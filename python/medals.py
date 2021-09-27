@@ -18,10 +18,15 @@ medalResults = [
 ]
 
 def createMedalTable(results):
-    # Use the results object above to create a medal table
-    # The winner gets 3 points, second place 2 points and third place 1 point
-    return
-
+    medalTable={}
+    for event in results:
+        for country in event.get("podium"):
+            j = country.split(".")
+            if j[1] in list(medalTable.keys()):
+                medalTable[j[1]] = medalTable[j[1]]+4-int(j[0])
+            else:
+                medalTable[j[1]] = 4-int(j[0])
+    return medalTable
 
 def test_function():
     #This it the test function, please don't change me
